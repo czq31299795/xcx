@@ -46,25 +46,30 @@ export default {
     },
     getOpenid(code){
       // 三个参数 appid secret code
+      let _this=this;
       const appid='wx4724df1cb3fe0ea1';
       const secret='4db1130d8ccdf23fa6212607e048c5ec';
-      var l='https://api.weixin.qq.com/sns/jscode2session?appid='+appid+'&secret='+secret+'&js_code='+code+'&grant_type=authorization_code';
-      wx.showLoading({
-        title:"加载中..."
-      })
-      wx.request({
+      let l='https://api.weixin.qq.com/sns/jscode2session?appid='+appid+'&secret='+secret+'&js_code='+code+'&grant_type=authorization_code';
+//      wx.request({
+//        url:l,
+//        method:"get",
+//        success(res){
+//          console.log(res.data);
+//          wx.hideLoading();
+//        },
+//        fail(err){
+//          console.log(err);
+//          wx.hideLoading();
+//        }
+//      })
+      _this.$https.request({
         url:l,
-        method:"get",
-        success(res){
-          console.log(res.data);
-          wx.hideLoading();
-        },
-        fail(err){
-          console.log(err);
-          wx.hideLoading();
-        }
+        method:'get'
+      }).then(res=>{
+        console.log(res)
+      }).catch(err=>{
+        console.log(err)
       })
-
     }
   },
 
