@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <div class="login">
-      <img src="/static/images/m1.jpg"/>
+      <img src="/static/imgs/guide_bg.jpg"/>
       <div class="learn">
         <button open-type="getUserInfo" @getuserinfo="getUserinfo">开始学习</button>
       </div>
@@ -33,7 +33,6 @@ export default {
     },
     getCode(){
       let _this=this;
-      // mpvue,提供了一个全局小程序 wx
       wx.login({
         success(res) {
           if (res.code) {
@@ -49,26 +48,35 @@ export default {
       let _this=this;
       const appid='wx4724df1cb3fe0ea1';
       const secret='4db1130d8ccdf23fa6212607e048c5ec';
-      let l='https://api.weixin.qq.com/sns/jscode2session?appid='+appid+'&secret='+secret+'&js_code='+code+'&grant_type=authorization_code';
-//      wx.request({
-//        url:l,
-//        method:"get",
-//        success(res){
-//          console.log(res.data);
-//          wx.hideLoading();
-//        },
-//        fail(err){
-//          console.log(err);
-//          wx.hideLoading();
-//        }
-//      })
+      const l=_this.$interfaces.getOpenid+appid+"/"+secret+"/"+code;
       _this.$https.request({
         url:l,
         method:'get'
       }).then(res=>{
-        console.log(res)
+//        将openid存储到vuex
+        _this.$store.dispatch("setOpenId",res.openid);
+//        请求课程数据
+        _this.isLearned(res.openid);
       }).catch(err=>{
         console.log(err)
+      })
+    },
+    isLearned(openid){
+      this.$https.request({
+        url:this.$interfaces.getMyLesson+openid,
+        method:'get'
+      }).then(res=>{
+//        已经答题测试过了
+        console.log(res);
+        wx.switchTab({
+          url:"../learn/main"
+        })
+      }).catch(err=>{
+//        没有答题，需要答题
+        console.log(err);
+        wx.redirectTo({
+            url:'../question/main'
+        })
       })
     }
   },

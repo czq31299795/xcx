@@ -9,7 +9,9 @@ Vue.use(Vuex);
 const state={
   //是否授权
   isAuthenticated:false,
-  user:null
+  user:null,
+  openId:'',
+  lessonInfo:null
 };
 export default new Vuex.Store({
   state,
