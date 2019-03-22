@@ -1,6 +1,6 @@
 <template>
   <div class="question">
-    <img src="/static/imgs/test.jpg" alt="" />
+    <img class="topimg" src="/static/imgs/showcase.jpg" mode="widthFix" alt="" />
     <div class="qs_content" v-if="questions.length > 0">
       <div v-if="!startqs">
         <p class="title">温馨提示:</p>
@@ -130,6 +130,9 @@
   }
 </script>
 <style scoped>
+  .topimg{
+    width: 100%;
+  }
   .question {
     width: 100%;
     height: 100%;
@@ -145,8 +148,11 @@
     width: 80%;
     height: 50%;
     background: #fff;
+    box-shadow: 0 0 2px #f5f5f5;
     top: 36%;
-    left: 10%;
+    left:0;
+    right: 0;
+    margin: auto;
     border-radius: 5px;
     box-sizing: border-box;
     padding: 10px;

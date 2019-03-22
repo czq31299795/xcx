@@ -4,13 +4,15 @@
     "pages/question/main",
     "pages/lesson/main",
     "pages/learn/main",
-    "pages/mine/main"
+    "pages/mine/main",
+    "pages/myLesson/main",
+    "pages/watchLesson/main"
   ],
   "tabBar":{
     "color":"#959394",
     "selectedColor":"#009eef",
     "borderStyle":"black",
-    "backgroundColor":"#fff",
+    "backgroundColor":"#ffffff",
     "list":[
       {
         "pagePath":"pages/learn/main",
@@ -34,7 +36,7 @@
   },
   "window": {
     "backgroundTextStyle": "light",
-    "navigationBarBackgroundColor": "#f5f5f5",
+    "navigationBarBackgroundColor": "red",
     "navigationBarTitleText": "cZq",
     "navigationBarTextStyle": "black"
   }
