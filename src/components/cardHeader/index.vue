@@ -2,7 +2,8 @@
     <div class="lesson_all">
       <span>{{title}}</span>
       <span v-if="lessonCount > 0">({{lessonCount}})</span>
-      <span @click="$emit('click')" class="look_all">查看全部</span>
+      <!--<span @click="$emit('backClick')" class="look_all">查看全部</span>-->
+      <span @click="upData" class="look_all">查看全部</span>
     </div>
 </template>
 <script>
@@ -17,7 +18,11 @@
         data() {
             return {}
         },
-        methods: {},
+        methods: {
+          upData(){
+            console.log(111);
+          }
+        },
         mounted() {
 
         }
